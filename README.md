@@ -1,4 +1,4 @@
-# SYS-REDUX Portfolio
+# SYS-REDUX Project Portfolio
 
 A modern, cyberpunk-themed portfolio application built with Next.js 16, showcasing full-stack development capabilities with Firebase integration, authentication, and real-time data management.
 
