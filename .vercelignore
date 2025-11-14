@@ -1,0 +1,52 @@
+# Firebase files (not needed on Vercel)
+_rules/
+.firebase/
+.firebaserc
+firebase.json
+firestore.indexes.json
+firestore.rules
+
+# Documentation
+README.md
+ROADMAP.md
+ROADMAP2.md
+DELETION_GUIDE.md
+EMAIL_SETUP_GUIDE.md
+
+# Git
+.git/
+.gitignore
+
+# Node modules (Vercel installs these)
+node_modules/
+
+# Tests and test coverage
+**/__tests__/
+**/*.test.ts
+**/*.test.tsx
+**/*.spec.ts
+**/*.spec.tsx
+coverage/
+.jest/
+jest.config.js
+jest.setup.js
+jest-dom.d.ts
+
+# Development files
+.env.local
+.env*.local
+
+# IDE
+.vscode/
+.idea/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Misc
+.DS_Store
+*.pem

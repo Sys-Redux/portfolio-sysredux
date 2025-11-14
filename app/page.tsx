@@ -104,7 +104,7 @@ export default function Home() {
 
             <p className="text-[1.2rem] leading-[1.8] mb-12 max-w-[500px]"
                style={{ color: 'var(--color-text-secondary)' }}>
-              Welcome to my digital domain. I craft code with cyberpunk precision,
+              Welcome to my digital domain. I craft code with steady precision,
               building the future one line at a time. Enter the matrix of my work.
             </p>
 
@@ -145,7 +145,7 @@ export default function Home() {
                 <span
                   className="font-['Orbitron'] text-[0.9rem]"
                   style={{ color: 'var(--color-primary-cyan)' }}>
-                  sys-redux@cyberpunk:~$
+                  sys-redux@rcnbuild:~$
                 </span>
               </div>
 
@@ -207,10 +207,10 @@ export default function Home() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mt-12">
             {[
-              { icon: '⚡', title: 'Frontend', desc: 'React • Tailwind • Next • TypeScript', progress: 95 },
-              { icon: '⚙️', title: 'Backend', desc: 'Node.js • Python • Express • Django', progress: 90 },
-              { icon: '🗄️', title: 'Database', desc: 'MongoDB • PostgreSQL • Redis • MySQL', progress: 85 },
-              { icon: '☁️', title: 'Cloud & DevOps', desc: 'AWS • Docker • Kubernetes • CI/CD', progress: 80 },
+              { icon: '⚡', title: 'Frontend', desc: 'React • Tailwind • Vue • Next • TypeScript', progress: 100 },
+              { icon: '⚙️', title: 'Backend', desc: 'Node.js • Python • Express • Flask • Django', progress: 95 },
+              { icon: '🗄️', title: 'Database', desc: 'MongoDB • PostgreSQL • Firestore • Redis • MySQL', progress: 85 },
+              { icon: '☁️', title: 'Cloud & DevOps', desc: 'AWS • Google Cloud • Docker • Kubernetes • CI/CD', progress: 80 },
             ].map((skill, index) => (
               <div
                 key={index}
@@ -284,13 +284,16 @@ export default function Home() {
           <h2
             className="font-['Orbitron'] text-[3rem] font-black mb-8"
             style={{ color: 'var(--color-text-primary)' }}>
-            Ready to <span className="neon-text">Build Tomorrow</span>?
+            Ready to <span className="neon-text-dim">Build Tomorrow</span>?
           </h2>
 
           <p
-            className="text-[1.3rem] leading-[1.8] mb-12 max-w-[600px] mx-auto"
+            className="text-[1.3rem] leading-[1.8] max-w-[600px] mx-auto"
             style={{ color: 'var(--color-text-secondary)' }}>
             Let&apos;s collaborate and build something extraordinary together.
+          </p>
+          <p className='text-[1.3rem] leading-[1.8] mb-12 max-w-[600px] mx-auto'
+             style={{ color: 'var(--color-text-secondary)' }}>
             The digital revolution starts now.
           </p>
 
