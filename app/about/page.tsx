@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 export const metadata = {
   title: 'About | SYS-REDUX',
   description: 'Learn more about Trevor Edge',
@@ -94,12 +96,12 @@ export default function AboutPage() {
             be part of your vision. Feel free to reach out!
           </p>
           <div className="flex gap-4 flex-wrap">
-            <a href="/contact" className="cyber-btn">
+            <Link href="/contact" className="cyber-btn">
               Contact Me
-            </a>
-            <a href="/projects" className="cyber-btn secondary">
+            </Link>
+            <Link href="/projects" className="cyber-btn secondary">
               View My Work
-            </a>
+            </Link>
           </div>
         </div>
       </div>
