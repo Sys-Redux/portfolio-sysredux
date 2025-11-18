@@ -39,7 +39,7 @@ export default function Home() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative h-screen flex items-center justify-center overflow-hidden">
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 md:pt-0">
         {/* Hero Background */}
         <div className="absolute top-0 left-0 w-full h-full -z-10">
           {/* Cyber Grid */}
@@ -73,10 +73,10 @@ export default function Home() {
         </div>
 
         {/* Hero Content */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 max-w-[1200px] mx-auto px-8 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-16 max-w-[1200px] mx-auto px-4 md:px-8 items-center">
           {/* Hero Text */}
           <div className="z-2">
-            <h1 className="font-['Orbitron'] text-[4rem] font-black mb-4 glitch"
+            <h1 className="font-['Orbitron'] text-[2.5rem] md:text-[4rem] font-black mb-4 glitch"
                 style={{
                   color: 'var(--color-primary-cyan)',
                   textShadow: '0 0 20px var(--color-primary-cyan)'
@@ -85,7 +85,7 @@ export default function Home() {
               SYS-REDUX
             </h1>
 
-            <h2 className="font-['Rajdhani'] text-[2rem] font-semibold mb-8 min-h-10"
+            <h2 className="font-['Rajdhani'] text-[1.5rem] md:text-[2rem] font-semibold mb-6 md:mb-8 min-h-10"
                 style={{ color: 'var(--color-text-primary)' }}>
               <span
                 className="typing-text"
@@ -102,7 +102,7 @@ export default function Home() {
               </span>
             </h2>
 
-            <p className="text-[1.2rem] leading-[1.8] mb-12 max-w-[500px]"
+            <p className="text-[1rem] md:text-[1.2rem] leading-[1.8] mb-8 md:mb-12 max-w-[500px]"
                style={{ color: 'var(--color-text-secondary)' }}>
               Welcome to my digital domain. I craft code with steady precision,
               building the future one line at a time. Enter the matrix of my work.
@@ -119,7 +119,7 @@ export default function Home() {
           </div>
 
           {/* Hero Visual */}
-          <div className="flex justify-center items-center">
+          <div className="flex justify-center items-center mt-8 lg:mt-0 mb-8 lg:mb-0">
             <div
               className="rounded-[10px] overflow-hidden w-full max-w-[500px]"
               style={{
@@ -150,7 +150,7 @@ export default function Home() {
               </div>
 
               {/* Terminal Body */}
-              <div className="p-8 font-['Courier_New',monospace] text-base leading-[1.6]">
+              <div className="p-4 md:p-8 font-['Courier_New',monospace] text-sm md:text-base leading-[1.6]">
                 <div className="mb-2">
                   <span className="prompt mr-2"
                         style={{ color: 'var(--color-primary-green)' }}>$</span>
@@ -189,11 +189,11 @@ export default function Home() {
 
       {/* Skills Preview Section */}
       <section
-        className="py-16"
+        className="py-12 md:py-16"
         style={{ background: 'var(--color-darker-bg)' }}>
-        <div className="max-w-[1200px] mx-auto px-8">
+        <div className="max-w-[1200px] mx-auto px-4 md:px-8">
           <h2
-            className="font-['Orbitron'] text-[3rem] font-black text-center mb-12 relative pb-8"
+            className="font-['Orbitron'] text-[2rem] md:text-[3rem] font-black text-center mb-8 md:mb-12 relative pb-6 md:pb-8"
             style={{ color: 'var(--color-text-primary)' }}
             data-text="CORE SYSTEMS">
             CORE SYSTEMS
@@ -205,7 +205,7 @@ export default function Home() {
             />
           </h2>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mt-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 mt-8 md:mt-12">
             {[
               { icon: '⚡', title: 'Frontend', desc: 'React • Tailwind • Vue • Next • TypeScript', progress: 100 },
               { icon: '⚙️', title: 'Backend', desc: 'Node.js • Python • Express • Flask • Django', progress: 95 },
@@ -214,7 +214,7 @@ export default function Home() {
             ].map((skill, index) => (
               <div
                 key={index}
-                className="skill-card group rounded-[10px] p-8 text-center transition-all duration-300 hover:-translate-y-2.5 relative overflow-hidden"
+                className="skill-card group rounded-[10px] p-6 md:p-8 text-center transition-all duration-300 hover:-translate-y-2.5 relative overflow-hidden"
                 style={{
                   background: 'var(--color-card-bg)',
                   border: '1px solid var(--color-border)'
@@ -234,14 +234,14 @@ export default function Home() {
 
                 {/* Title */}
                 <h3
-                  className="font-['Orbitron'] text-[1.3rem] font-bold mb-4 relative z-10"
+                  className="font-['Orbitron'] text-[1.1rem] md:text-[1.3rem] font-bold mb-3 md:mb-4 relative z-10"
                   style={{ color: 'var(--color-text-primary)' }}>
                   {skill.title}
                 </h3>
 
                 {/* Description */}
                 <p
-                  className="mb-6 leading-[1.6] relative z-10"
+                  className="mb-4 md:mb-6 text-sm md:text-base leading-[1.6] relative z-10"
                   style={{ color: 'var(--color-text-secondary)' }}>
                   {skill.desc}
                 </p>
@@ -267,7 +267,7 @@ export default function Home() {
 
       {/* CTA Section */}
       <section
-        className="py-16 text-center relative"
+        className="py-12 md:py-16 text-center relative"
         style={{
           background: 'linear-gradient(135deg, var(--color-dark-bg), var(--color-darker-bg))'
         }}>
@@ -280,19 +280,19 @@ export default function Home() {
         />
 
         {/* CTA Content */}
-        <div className="relative z-2 max-w-[1200px] mx-auto px-8">
+        <div className="relative z-2 max-w-[1200px] mx-auto px-4 md:px-8">
           <h2
-            className="font-['Orbitron'] text-[3rem] font-black mb-8"
+            className="font-['Orbitron'] text-[2rem] md:text-[3rem] font-black mb-6 md:mb-8"
             style={{ color: 'var(--color-text-primary)' }}>
             Ready to <span className="neon-text-dim">Build Tomorrow</span>?
           </h2>
 
           <p
-            className="text-[1.3rem] leading-[1.8] max-w-[600px] mx-auto"
+            className="text-[1.1rem] md:text-[1.3rem] leading-[1.8] max-w-[600px] mx-auto"
             style={{ color: 'var(--color-text-secondary)' }}>
             Let&apos;s collaborate and build something extraordinary together.
           </p>
-          <p className='text-[1.3rem] leading-[1.8] mb-12 max-w-[600px] mx-auto'
+          <p className='text-[1.1rem] md:text-[1.3rem] leading-[1.8] mb-8 md:mb-12 max-w-[600px] mx-auto'
              style={{ color: 'var(--color-text-secondary)' }}>
             The digital revolution starts now.
           </p>

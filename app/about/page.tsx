@@ -24,7 +24,7 @@ export default function AboutPage() {
             I&apos;m Trevor Edge, a systems developer and digital architect passionate about building
             innovative solutions that push the boundaries of technology. I&apos;m an outgoing, AI driven
             engineer with a strong foundation in JavaScript and Python. But more than that, I LOVE
-            developing! I am interested in all the tools devs that came before me made, the jargon that
+            developing! I am interested in all the tools that the devs that came before me made, the jargon that
             mystifies the internet, and the feeling you get when you push code to GitHub at 3AM, the tests
             pass, and you are the proud contributor to something that could make a difference to someone.
           </p>
@@ -39,7 +39,7 @@ export default function AboutPage() {
             experimenting with Python scripts in my bootcamp days, I discovered an unyielding passion
             for the <span className='text-primary-green text-xl p-0.5 rounded-lg font-bold shadow-glow-green'>
                 DevLife
-            </span>. This passion propelled me to master modern frameworks like React Next.js, and TypeScript
+            </span>. This passion propelled me to master modern frameworks like React, Next.js, and TypeScript
             to ensure that I&apos;m type-safe, and modern developer workflows.
           </p>
           <p className='text-lg leading-relaxed' style={{ color: 'var(--color-text-secondary)' }}>
@@ -49,8 +49,8 @@ export default function AboutPage() {
           </p>
           <p className='text-lg leading-relaxed' style={{ color: 'var(--color-text-secondary)' }}>
             Beyond the code, I believe in maintainability, purpose, and structure. Meaning that
-            every line of code I write serves a sole purpose, built on a solid foundation, adn could
-            be read as a as a reminder to my future self.
+            every line of code I write serves a sole purpose, built on a solid foundation, and could
+            be read as a reminder to my future self.
           </p>
         </div>
 

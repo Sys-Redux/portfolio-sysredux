@@ -59,14 +59,14 @@ export default function NavBar() {
         backdropFilter: 'blur(10px)',
         borderBottomColor: 'var(--color-border)'
       }}>
-      <div className="max-w-[1200px] mx-auto px-8 h-full flex justify-between items-center">
+      <div className="max-w-[1200px] mx-auto px-4 md:px-8 h-full flex justify-between items-center">
         {/* Logo */}
         <Link
           href="/"
-          className="font-['Orbitron'] text-[1.8rem] font-black tracking-[2px] relative no-underline group"
+          className="font-['Orbitron'] text-[1.2rem] md:text-[1.8rem] font-black tracking-[1px] md:tracking-[2px] relative no-underline group leading-none"
           onClick={closeMenu}>
           <span
-            className="glitch transition-all duration-300 group-hover:scale-105"
+            className="glitch transition-all duration-300 group-hover:scale-105 inline-block"
             style={{
               color: 'var(--color-primary-cyan)',
               textShadow: '0 0 10px var(--color-primary-cyan)'
