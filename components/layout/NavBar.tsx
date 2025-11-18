@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { useAuth } from '@/lib/context/AuthContext';
 import { useUserData } from '@/lib/hooks/useUserData';
@@ -63,15 +64,26 @@ export default function NavBar() {
         {/* Logo */}
         <Link
           href="/"
-          className="font-['Orbitron'] text-[1.2rem] md:text-[1.8rem] font-black tracking-[1px] md:tracking-[2px] relative no-underline group leading-none"
+          className="flex items-center gap-2 md:gap-3 relative no-underline group"
           onClick={closeMenu}>
+          <div className="relative w-10 h-10 md:w-12 md:h-12 transition-all duration-300 group-hover:scale-110">
+            <Image
+              src="/images/logo.png"
+              alt="SYS-REDUX Logo"
+              fill
+              className="object-contain"
+              priority
+              style={{
+                filter: 'drop-shadow(0 0 8px rgba(0, 255, 255, 0.5))'
+              }}
+            />
+          </div>
           <span
-            className="glitch transition-all duration-300 group-hover:scale-105 inline-block"
+            className="font-['Orbitron'] text-[1rem] md:text-[1.5rem] font-black tracking-[1px] md:tracking-[2px] leading-none inline-block transition-all duration-300 group-hover:scale-105"
             style={{
               color: 'var(--color-primary-cyan)',
               textShadow: '0 0 10px var(--color-primary-cyan)'
-            }}
-            data-text="SYS-REDUX">
+            }}>
             SYS-REDUX
           </span>
         </Link>
