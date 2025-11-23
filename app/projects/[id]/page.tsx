@@ -6,7 +6,7 @@ import { useUserData } from '@/lib/hooks/useUserData';
 import { useParams, useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { useState } from 'react';
-import { ArrowLeft, GitPullRequestDraft, ExternalLink, ChevronLeft, ChevronRight, Edit } from 'lucide-react';
+import { ArrowLeft, GitPullRequestDraft, ExternalLink, ChevronLeft, ChevronRight, Edit, X } from 'lucide-react';
 import ProjectForm from '@/components/projects/ProjectForm';
 import type { Project } from '@/lib/types';
 
@@ -21,6 +21,7 @@ export default function ProjectDetailPage() {
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [isEditing, setIsEditing] = useState(false);
   const [uploadProgress, setUploadProgress] = useState(0);
+  const [isLightboxOpen, setIsLightboxOpen] = useState(false);
 
   const updateMutation = useUpdateProject((progress) => setUploadProgress(progress));
   const deleteMutation = useDeleteProject();
@@ -152,27 +153,38 @@ export default function ProjectDetailPage() {
           {/* Image Gallery */}
           <div className="cyber-card">
             {/* Main Image */}
-            <div className="relative w-full h-96 mb-4 rounded overflow-hidden border" style={{ borderColor: 'var(--color-border)' }}>
+            <div
+              className="relative w-full aspect-video mb-4 rounded overflow-hidden border cursor-pointer group"
+              style={{ borderColor: 'var(--color-border)' }}
+              onClick={() => setIsLightboxOpen(true)}
+            >
               <Image
                 src={currentImage}
                 alt={`${project.title} - Image ${selectedImageIndex + 1}`}
                 fill
-                className="object-cover"
+                className="object-cover transition-transform duration-300 group-hover:scale-105"
               />
 
-              {/* Navigation Arrows (only show if multiple images) */}
+              {/* Click hint overlay - hidden on mobile */}
+              <div className="hidden md:flex absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors items-center justify-center">
+                <span className="opacity-0 group-hover:opacity-100 transition-opacity text-white font-['Rajdhani'] text-lg bg-black/70 px-4 py-2 rounded">
+                  Click to enlarge
+                </span>
+              </div>
+
+              {/* Navigation Arrows (only show if multiple images) - hidden on mobile */}
               {images.length > 1 && (
                 <>
                   <button
                     onClick={prevImage}
-                    className="absolute left-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/70 hover:bg-black/90 transition-colors"
+                    className="hidden md:block absolute left-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/70 hover:bg-black/90 transition-colors"
                     aria-label="Previous image"
                   >
                     <ChevronLeft size={24} style={{ color: 'var(--color-primary-cyan)' }} />
                   </button>
                   <button
                     onClick={nextImage}
-                    className="absolute right-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/70 hover:bg-black/90 transition-colors"
+                    className="hidden md:block absolute right-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/70 hover:bg-black/90 transition-colors"
                     aria-label="Next image"
                   >
                     <ChevronRight size={24} style={{ color: 'var(--color-primary-cyan)' }} />
@@ -296,6 +308,67 @@ export default function ProjectDetailPage() {
           </div>
             </div>
           </>
+        )}
+
+        {/* Lightbox Modal */}
+        {isLightboxOpen && (
+          <div
+            className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center p-4"
+            onClick={() => setIsLightboxOpen(false)}
+          >
+            {/* Close Button */}
+            <button
+              onClick={() => setIsLightboxOpen(false)}
+              className="absolute top-4 right-4 p-2 rounded-full bg-black/70 hover:bg-black/90 transition-colors z-10"
+              aria-label="Close lightbox"
+            >
+              <X size={32} style={{ color: 'var(--color-primary-cyan)' }} />
+            </button>
+
+            {/* Navigation Arrows */}
+            {images.length > 1 && (
+              <>
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    prevImage();
+                  }}
+                  className="absolute left-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-black/70 hover:bg-black/90 transition-colors z-10"
+                  aria-label="Previous image"
+                >
+                  <ChevronLeft size={32} style={{ color: 'var(--color-primary-cyan)' }} />
+                </button>
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    nextImage();
+                  }}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-black/70 hover:bg-black/90 transition-colors z-10"
+                  aria-label="Next image"
+                >
+                  <ChevronRight size={32} style={{ color: 'var(--color-primary-cyan)' }} />
+                </button>
+
+                {/* Image Counter */}
+                <div className="absolute bottom-8 left-1/2 -translate-x-1/2 px-4 py-2 rounded bg-black/70 text-lg font-['Rajdhani']">
+                  {selectedImageIndex + 1} / {images.length}
+                </div>
+              </>
+            )}
+
+            {/* Large Image */}
+            <div
+              className="relative w-full h-full max-w-7xl max-h-[90vh]"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <Image
+                src={currentImage}
+                alt={`${project.title} - Image ${selectedImageIndex + 1}`}
+                fill
+                className="object-contain"
+              />
+            </div>
+          </div>
         )}
       </div>
     </div>

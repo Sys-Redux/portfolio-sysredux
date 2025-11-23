@@ -17,7 +17,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
         aria-label={`View ${project.title} details`}
       />
       {/* Project Image */}
-      <div className="relative h-48 mb-4 rounded overflow-hidden">
+      <div className="relative w-full aspect-video mb-4 rounded overflow-hidden">
         {project.imageUrl ? (
           <Image
             src={project.imageUrl}
