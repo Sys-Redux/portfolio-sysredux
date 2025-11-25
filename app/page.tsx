@@ -2,12 +2,21 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import FeaturedProjectsCarousel from '@/components/home/FeaturedProjectsCarousel';
+import { useFeaturedProjects } from '@/lib/hooks/useFeaturedProjects';
 
 export default function Home() {
   const [typedText, setTypedText] = useState('');
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
+  const { data: featuredProjects, isLoading: projectsLoading, error } = useFeaturedProjects(6);
 
+  // Debug logging
+  useEffect(() => {
+    console.log('Featured Projects Data:', featuredProjects);
+    console.log('Loading:', projectsLoading);
+    console.log('Error:', error);
+  }, [featuredProjects, projectsLoading, error]);
 
   useEffect(() => {
     const titles = [
@@ -39,7 +48,7 @@ export default function Home() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 md:pt-0">
+      <section className="relative py-20 md:py-24 mt-20">
         {/* Hero Background */}
         <div className="absolute top-0 left-0 w-full h-full -z-10">
           {/* Cyber Grid */}
@@ -72,118 +81,149 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Hero Content */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-16 max-w-[1200px] mx-auto px-4 md:px-8 items-center">
-          {/* Hero Text */}
-          <div className="z-2">
-            <h1 className="font-['Orbitron'] text-[2.5rem] md:text-[4rem] font-black mb-4 glitch"
-                style={{
-                  color: 'var(--color-primary-cyan)',
-                  textShadow: '0 0 20px var(--color-primary-cyan)'
-                }}
-                data-text="SYS-REDUX">
-              SYS-REDUX
-            </h1>
+        {/* Hero Content Container */}
+        <div className="w-full max-w-[1400px] mx-auto px-4 md:px-8">
+          {/* Hero Grid */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-16 items-start lg:items-center">
+            {/* Hero Text */}
+            <div className="z-2">
+              <h1 className="font-['Orbitron'] text-[2.5rem] md:text-[4rem] font-black mb-4 glitch"
+                  style={{
+                    color: 'var(--color-primary-cyan)',
+                    textShadow: '0 0 20px var(--color-primary-cyan)'
+                  }}
+                  data-text="SYS-REDUX">
+                SYS-REDUX
+              </h1>
 
-            <h2 className="font-['Rajdhani'] text-[1.5rem] md:text-[2rem] font-semibold mb-6 md:mb-8 min-h-10"
-                style={{ color: 'var(--color-text-primary)' }}>
-              <span
-                className="typing-text"
-                style={{
-                  color: 'var(--color-primary-green)',
-                  textShadow: '0 0 10px var(--color-primary-green)'
-                }}>
-                {typedText}
-              </span>
-              <span
-                className="cursor"
-                style={{ color: 'var(--color-primary-cyan)' }}>
-                |
-              </span>
-            </h2>
-
-            <p className="text-[1rem] md:text-[1.2rem] leading-[1.8] mb-8 md:mb-12 max-w-[500px]"
-               style={{ color: 'var(--color-text-secondary)' }}>
-              Welcome to my digital domain. I craft code with steady precision,
-              building the future one line at a time. Enter the matrix of my work.
-            </p>
-
-            <div className="flex gap-8 flex-wrap">
-              <Link href="/projects" className="cyber-btn">
-                View Projects
-              </Link>
-              <Link href="/contact" className="cyber-btn secondary">
-                Get In Touch
-              </Link>
-            </div>
-          </div>
-
-          {/* Hero Visual */}
-          <div className="flex justify-center items-center mt-8 lg:mt-0 mb-8 lg:mb-0">
-            <div
-              className="rounded-[10px] overflow-hidden w-full max-w-[500px]"
-              style={{
-                background: 'var(--color-card-bg)',
-                border: '1px solid var(--color-border)',
-                boxShadow: 'var(--shadow-glow)'
-              }}>
-              {/* Terminal Header */}
-              <div
-                className="px-4 py-4 flex justify-between items-center"
-                style={{
-                  background: 'var(--color-darker-bg)',
-                  borderBottom: '1px solid var(--color-border)'
-                }}>
-                <div className="flex gap-2">
-                  <span className="block w-3 h-3 rounded-full"
-                        style={{ background: '#ff5f56', boxShadow: '0 0 5px #ff5f56' }} />
-                  <span className="block w-3 h-3 rounded-full"
-                        style={{ background: '#ffbd2e', boxShadow: '0 0 5px #ffbd2e' }} />
-                  <span className="block w-3 h-3 rounded-full"
-                        style={{ background: '#27ca3f', boxShadow: '0 0 5px #27ca3f' }} />
-                </div>
+              <h2 className="font-['Rajdhani'] text-[1.5rem] md:text-[2rem] font-semibold mb-6 md:mb-8 min-h-10"
+                  style={{ color: 'var(--color-text-primary)' }}>
                 <span
-                  className="font-['Orbitron'] text-[0.9rem]"
-                  style={{ color: 'var(--color-primary-cyan)' }}>
-                  sys-redux@rcnbuild:~$
+                  className="typing-text"
+                  style={{
+                    color: 'var(--color-primary-green)',
+                    textShadow: '0 0 10px var(--color-primary-green)'
+                  }}>
+                  {typedText}
                 </span>
-              </div>
+                <span
+                  className="cursor"
+                  style={{ color: 'var(--color-primary-cyan)' }}>
+                  |
+                </span>
+              </h2>
 
-              {/* Terminal Body */}
-              <div className="p-4 md:p-8 font-['Courier_New',monospace] text-sm md:text-base leading-[1.6]">
-                <div className="mb-2">
-                  <span className="prompt mr-2"
-                        style={{ color: 'var(--color-primary-green)' }}>$</span>
-                  <span className="command"
-                        style={{ color: 'var(--color-primary-cyan)' }}>whoami</span>
+              <p className="text-[1rem] md:text-[1.2rem] leading-[1.8] mb-8 md:mb-12 max-w-[500px]"
+                 style={{ color: 'var(--color-text-secondary)' }}>
+                Welcome to my digital domain. I craft code with steady precision,
+                building the future one line at a time. Enter the matrix of my work.
+              </p>
+
+              <div className="flex gap-8 flex-wrap">
+                <Link href="/projects" className="cyber-btn">
+                  View Projects
+                </Link>
+                <Link href="/contact" className="cyber-btn secondary">
+                  Get In Touch
+                </Link>
+              </div>
+            </div>
+
+            {/* Hero Visual */}
+            <div className="flex justify-center items-center mt-8 lg:mt-0">
+              <div
+                className="rounded-[10px] overflow-hidden w-full max-w-[500px]"
+                style={{
+                  background: 'var(--color-card-bg)',
+                  border: '1px solid var(--color-border)',
+                  boxShadow: 'var(--shadow-glow)'
+                }}>
+                {/* Terminal Header */}
+                <div
+                  className="px-4 py-4 flex justify-between items-center"
+                  style={{
+                    background: 'var(--color-darker-bg)',
+                    borderBottom: '1px solid var(--color-border)'
+                  }}>
+                  <div className="flex gap-2">
+                    <span className="block w-3 h-3 rounded-full"
+                          style={{ background: '#ff5f56', boxShadow: '0 0 5px #ff5f56' }} />
+                    <span className="block w-3 h-3 rounded-full"
+                          style={{ background: '#ffbd2e', boxShadow: '0 0 5px #ffbd2e' }} />
+                    <span className="block w-3 h-3 rounded-full"
+                          style={{ background: '#27ca3f', boxShadow: '0 0 5px #27ca3f' }} />
+                  </div>
+                  <span
+                    className="font-['Orbitron'] text-[0.9rem]"
+                    style={{ color: 'var(--color-primary-cyan)' }}>
+                    sys-redux@rcnbuild:~$
+                  </span>
                 </div>
-                <div className="mb-2">
-                  <span className="output"
-                        style={{ color: 'var(--color-text-secondary)' }}>sys-redux</span>
-                </div>
-                <div className="mb-2">
-                  <span className="prompt mr-2"
-                        style={{ color: 'var(--color-primary-green)' }}>$</span>
-                  <span className="command"
-                        style={{ color: 'var(--color-primary-cyan)' }}>cat skills.txt</span>
-                </div>
-                <div className="mb-2">
-                  <span className="output"
-                        style={{ color: 'var(--color-text-secondary)' }}>React.js • Node.js • Python</span>
-                </div>
-                <div className="mb-2">
-                  <span className="output"
-                        style={{ color: 'var(--color-text-secondary)' }}>JavaScript • TypeScript • MongoDB</span>
-                </div>
-                <div className="mb-2">
-                  <span className="prompt mr-2"
-                        style={{ color: 'var(--color-primary-green)' }}>$</span>
-                  <span className="command animate-[blink_1s_infinite]"
-                        style={{ color: 'var(--color-primary-cyan)' }}>pnpm build</span>
+
+                {/* Terminal Body */}
+                <div className="p-4 md:p-8 font-['Courier_New',monospace] text-sm md:text-base leading-[1.6]">
+                  <div className="mb-2">
+                    <span className="prompt mr-2"
+                          style={{ color: 'var(--color-primary-green)' }}>$</span>
+                    <span className="command"
+                          style={{ color: 'var(--color-primary-cyan)' }}>whoami</span>
+                  </div>
+                  <div className="mb-2">
+                    <span className="output"
+                          style={{ color: 'var(--color-text-secondary)' }}>sys-redux</span>
+                  </div>
+                  <div className="mb-2">
+                    <span className="prompt mr-2"
+                          style={{ color: 'var(--color-primary-green)' }}>$</span>
+                    <span className="command"
+                          style={{ color: 'var(--color-primary-cyan)' }}>cat skills.txt</span>
+                  </div>
+                  <div className="mb-2">
+                    <span className="output"
+                          style={{ color: 'var(--color-text-secondary)' }}>React.js • Node.js • Python</span>
+                  </div>
+                  <div className="mb-2">
+                    <span className="output"
+                          style={{ color: 'var(--color-text-secondary)' }}>JavaScript • TypeScript • MongoDB</span>
+                  </div>
+                  <div className="mb-2">
+                    <span className="prompt mr-2"
+                          style={{ color: 'var(--color-primary-green)' }}>$</span>
+                    <span className="command animate-[blink_1s_infinite]"
+                          style={{ color: 'var(--color-primary-cyan)' }}>pnpm build</span>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Featured Projects Section */}
+      <section className="py-12 md:py-16">
+        <div className="w-full max-w-[1400px] mx-auto px-4 md:px-8">
+          {/* Featured Projects Header */}
+          <div className="text-center mb-2 md:mb-4">
+            <h2
+              className="font-['Orbitron'] text-2xl md:text-3xl font-black mb-2"
+              style={{ color: 'var(--color-primary-cyan)' }}
+            >
+              FEATURED PROJECTS
+            </h2>
+            <p className="text-base md:text-lg" style={{ color: 'var(--color-text-secondary)' }}>
+              Swipe to explore my latest work
+            </p>
+          </div>
+
+          {/* Featured Projects Carousel */}
+          {projectsLoading && (
+            <div className="flex items-center justify-center min-h-[300px]">
+              <div className="loading" />
+            </div>
+          )}
+          {!projectsLoading && featuredProjects && featuredProjects.length > 0 && (
+            <FeaturedProjectsCarousel projects={featuredProjects} />
+          )}
         </div>
       </section>
 

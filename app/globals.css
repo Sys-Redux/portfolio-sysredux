@@ -341,6 +341,34 @@
     color: var(--color-dark-bg);
   }
 
+  /* Smooth Scroll Snap */
+  .snap-x {
+    scroll-snap-type: x mandatory;
+  }
+
+  .snap-start {
+    scroll-snap-align: start;
+  }
+
+  .snap-center {
+    scroll-snap-align: center;
+  }
+
+  /* Hide Scrollbar But Keep Functionality */
+  .scrollbar-hide {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;  /* Chrome, Safari, Opera */
+  }
+
+  /* Smooth Scroll Behavior */
+  .overflow-x-auto {
+    -webkit-overflow-scrolling: touch;
+  }
+
   /* Responsive typography */
   @media (max-width: 768px) {
     body {
