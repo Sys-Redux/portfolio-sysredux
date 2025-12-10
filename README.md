@@ -12,6 +12,10 @@ A modern, cyberpunk-themed portfolio application built with Next.js 16, showcasi
 
 This portfolio application demonstrates modern web development practices with a focus on user experience, accessibility, and scalability. Built as a personal project to showcase technical skills and creative design abilities.
 
+### Architecture
+
+![SYS-REDUX Architecture](/public/images/architecture.png)
+
 **Live Demo:** [Your Vercel URL]
 **Admin Panel:** `/adminPanel` (requires authentication)
 
