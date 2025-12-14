@@ -46,11 +46,11 @@ export default function Home() {
   }, [typedText, currentIndex, isDeleting]);
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen overflow-x-hidden">
       {/* Hero Section */}
-      <section className="relative py-20 md:py-24 mt-20">
+      <section className="relative py-20 md:py-24 mt-20 overflow-hidden">
         {/* Hero Background */}
-        <div className="absolute top-0 left-0 w-full h-full -z-10">
+        <div className="absolute top-0 left-0 w-full h-full -z-10 overflow-hidden">
           {/* Cyber Grid */}
           <div
             className="absolute top-0 left-0 w-full h-full animate-[gridFloat_15s_linear_infinite]"
@@ -65,19 +65,25 @@ export default function Home() {
 
           {/* Floating Particles */}
           <div className="absolute top-0 left-0 w-full h-full">
-            {[...Array(50)].map((_, i) => (
-              <div
-                key={i}
-                className="absolute w-0.5 h-0.5 rounded-full animate-[float_linear_infinite]"
-                style={{
-                  left: `${Math.random() * 100}%`, // eslint-disable-line
-                  background: 'var(--color-primary-cyan)',
-                  animationDelay: `${Math.random() * 10}s`, // eslint-disable-line
-                  animationDuration: `${5 + Math.random() * 10}s`, // eslint-disable-line
-                  boxShadow: '0 0 6px var(--color-primary-cyan)'
-                }}
-              />
-            ))}
+            {[...Array(50)].map((_, i) => {
+              // Use deterministic values based on index to avoid hydration mismatch
+              const left = ((i * 17) % 100);
+              const delay = ((i * 7) % 10);
+              const duration = 5 + ((i * 13) % 10);
+              return (
+                <div
+                  key={i}
+                  className="absolute w-0.5 h-0.5 rounded-full animate-[float_linear_infinite]"
+                  style={{
+                    left: `${left}%`,
+                    background: 'var(--color-primary-cyan)',
+                    animationDelay: `${delay}s`,
+                    animationDuration: `${duration}s`,
+                    boxShadow: '0 0 6px var(--color-primary-cyan)'
+                  }}
+                />
+              );
+            })}
           </div>
         </div>
 
@@ -96,7 +102,7 @@ export default function Home() {
                 SYS-REDUX
               </h1>
 
-              <h2 className="font-['Rajdhani'] text-[1.5rem] md:text-[2rem] font-semibold mb-6 md:mb-8 min-h-10"
+              <h2 className="font-['Rajdhani'] text-[1.5rem] md:text-[2rem] font-semibold mb-6 md:mb-8 h-10 md:h-12"
                   style={{ color: 'var(--color-text-primary)' }}>
                 <span
                   className="typing-text"

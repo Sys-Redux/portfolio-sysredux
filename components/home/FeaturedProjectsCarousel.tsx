@@ -3,6 +3,7 @@
 import { useRef, useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { ChevronLeft, ChevronRight, ExternalLink, GitPullRequestDraft } from 'lucide-react';
 import { Project } from '@/lib/types';
 
@@ -14,6 +15,7 @@ export default function FeaturedProjectsCarousel({ projects }: FeaturedProjectsC
     const scrollRef = useRef<HTMLDivElement>(null);
     const [canScrollLeft, setCanScrollLeft] = useState(false);
     const [canScrollRight, setCanScrollRight] = useState(true);
+    const router = useRouter();
 
     const checkScroll = () => {
         if (scrollRef.current) {
@@ -80,7 +82,10 @@ export default function FeaturedProjectsCarousel({ projects }: FeaturedProjectsC
                                 key={project.id}
                                 className="flex-none w-[64vw] sm:w-[52vw] md:w-[34vw] lg:w-[22vw] xl:w-[17vw] snap-start"
                             >
-                                <Link href={`/projects/${project.id}`} className="block group/card">
+                                <div
+                                    onClick={() => router.push(`/projects/${project.id}`)}
+                                    className="block group/card cursor-pointer"
+                                >
                                     <div className="rounded-lg overflow-hidden border transition-all duration-300 hover:scale-[1.02] hover:shadow-lg h-full"
                                         style={{ background: 'var(--color-card-bg)', borderColor: 'var(--color-border)'}}
                                     >
@@ -106,9 +111,9 @@ export default function FeaturedProjectsCarousel({ projects }: FeaturedProjectsC
                                             </div>
 
                                             {/* Quick Actions */}
-                                            <div className="absolute bottom-3 right-3 flex gap-2 opacity-0 group-hover/card:opacity-100 transition-opacity">
+                                            <div className="absolute top-3 right-3 flex gap-2 opacity-0 group-hover/card:opacity-100 transition-opacity">
                                                 {project.githubUrl && (
-                                                    <Link
+                                                    <a
                                                         href={project.githubUrl}
                                                         target='_blank'
                                                         rel='noopener noreferrer'
@@ -117,10 +122,10 @@ export default function FeaturedProjectsCarousel({ projects }: FeaturedProjectsC
                                                         aria-label='View on GitHub'
                                                     >
                                                         <GitPullRequestDraft size={16} color='var(--color-primary-cyan)' />
-                                                    </Link>
+                                                    </a>
                                                 )}
                                                 {project.liveUrl && (
-                                                    <Link
+                                                    <a
                                                         href={project.liveUrl}
                                                         target='_blank'
                                                         rel='noopener noreferrer'
@@ -129,7 +134,7 @@ export default function FeaturedProjectsCarousel({ projects }: FeaturedProjectsC
                                                         aria-label='View Live Demo'
                                                     >
                                                         <ExternalLink size={16} color='var(--color-primary-green)' />
-                                                    </Link>
+                                                    </a>
                                                 )}
                                             </div>
                                         </div>
@@ -170,7 +175,7 @@ export default function FeaturedProjectsCarousel({ projects }: FeaturedProjectsC
                                             </div>
                                         </div>
                                     </div>
-                                </Link>
+                                </div>
                             </div>
                         ))}
                     </div>

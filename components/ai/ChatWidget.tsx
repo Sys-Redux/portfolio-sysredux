@@ -4,11 +4,26 @@ import { MessageSquare, X, Send, Bot, User, Trash2 } from 'lucide-react';
 import { useChat } from '../../lib/hooks/useChat';
 
 export default function ChatWidget() {
-    const [isOpen, setIsOpen] = useState(true);
+    // Start with null to indicate "not yet determined", then set based on viewport
+    const [isOpen, setIsOpen] = useState<boolean | null>(null);
     const [inputValue, setInputValue] = useState('');
     const messagesEndRef = useRef<HTMLDivElement>(null);
     const inputRef = useRef<HTMLInputElement>(null);
     const { messages, isLoading, sendMessage, clearMessages } = useChat();
+
+    // Determine initial state on mount
+    const isOpenResolved = isOpen ?? false;
+
+    // Set initial open state after mount
+    useEffect(() => {
+        if (isOpen === null) {
+            const isDesktop = window.matchMedia('(min-width: 768px)').matches;
+            // Use requestAnimationFrame to avoid the synchronous setState warning
+            requestAnimationFrame(() => {
+                setIsOpen(isDesktop);
+            });
+        }
+    }, [isOpen]);
 
     // Auto-scroll to bottom when new messages arrive
     useEffect(() => {
@@ -43,21 +58,21 @@ export default function ChatWidget() {
         <>
             {/* Chat Toggle Button */}
             <button
-                onClick={() => setIsOpen(!isOpen)}
+                onClick={() => setIsOpen(!isOpenResolved)}
                 className={`
                     fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full flex items-center justify-center
                     transition-all duration-300 ease-out hover:scale-110 active:scale-95
-                    ${isOpen ? 'rotate-0' : 'animate-pulse'}
+                    ${isOpenResolved ? 'rotate-0' : 'animate-pulse'}
                 `}
                 style={{
                     background: 'linear-gradient(135deg, var(--color-primary-cyan), var(--color-primary-purple))',
-                    boxShadow: isOpen
+                    boxShadow: isOpenResolved
                         ? '0 0 20px rgba(0, 255, 255, 0.5)'
                         : '0 0 30px rgba(0, 255, 255, 0.4), 0 0 60px rgba(0, 255, 255, 0.2)',
                 }}
-                aria-label={isOpen ? 'Close chat' : 'Open chat'}
+                aria-label={isOpenResolved ? 'Close chat' : 'Open chat'}
             >
-                {isOpen ? (
+                {isOpenResolved ? (
                     <X size={24} color='#0a0a0a' strokeWidth={2.5} />
                 ) : (
                     <MessageSquare size={24} color='#0a0a0a' strokeWidth={2.5} />
@@ -68,7 +83,7 @@ export default function ChatWidget() {
             <div
                 className={`
                     fixed bottom-24 right-6 z-40 w-[380px] max-w-[calc(100vw-3rem)] transition-all duration-300 ease-out
-                    ${isOpen
+                    ${isOpenResolved
                         ? 'opacity-100 translate-y-0 pointer-events-auto'
                         : 'opacity-0 translate-y-4 pointer-events-none'}
                     `}

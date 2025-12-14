@@ -32,7 +32,7 @@ export default function ProjectsPage() {
   const allProjects = data?.pages.flatMap((page) => page.projects) || [];
 
   return (
-    <div className="min-h-screen py-24 px-8" style={{ background: 'var(--color-darker-bg)' }}>
+    <div className="min-h-screen py-24 px-8">
       <div className="max-w-[1200px] mx-auto">
         <h1
           className="font-['Orbitron'] text-5xl font-black text-center mb-4 glitch text-primary-cyan"
