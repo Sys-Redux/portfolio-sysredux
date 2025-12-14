@@ -299,7 +299,7 @@ This project is open source and available under the MIT License.
 - Next.js team for the amazing framework
 - Firebase for the backend infrastructure
 - Vercel for seamless deployment
-- The open-source community for inspiration
+- The open-source community for all the love
 
 ---
 
