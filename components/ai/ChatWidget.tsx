@@ -4,7 +4,7 @@ import { MessageSquare, X, Send, Bot, User, Trash2 } from 'lucide-react';
 import { useChat } from '../../lib/hooks/useChat';
 
 export default function ChatWidget() {
-    const [isOpen, setIsOpen] = useState(false);
+    const [isOpen, setIsOpen] = useState(true);
     const [inputValue, setInputValue] = useState('');
     const messagesEndRef = useRef<HTMLDivElement>(null);
     const inputRef = useRef<HTMLInputElement>(null);
@@ -150,8 +150,196 @@ export default function ChatWidget() {
                     </div>
 
                     {/* Messages Area */}
+                    <div
+                        className='flex-1 overflow-y-auto p-4 space-y-4'
+                        style={{ scrollbarWidth: 'thin', scrollbarColor: 'var(--color-border) transparent' }}
+                    >
+                        {/* Welcome Message */}
+                        {messages.length === 0 && (
+                            <div className='text-center py-8'>
+                                <div
+                                    className='w-16 h-16 rounded-full mx-auto mb-4 flex items-center justify-center'
+                                    style={{
+                                        background: 'linear-gradient(135deg, var(--color-primary-cyan), var(--color-primary-green))',
+                                        boxShadow: '0 0 30px rgba(0, 255, 255, 0.3)',
+                                    }}
+                                >
+                                    <Bot size={32} color='#0a0a0a' strokeWidth={2} />
+                                </div>
+                                <h4
+                                    className='font-["Orbitron"] text-lg font-bold mb-2'
+                                    style={{ color: 'var(--color-primary-cyan)' }}
+                                >
+                                    Welcome, Human
+                                </h4>
+                                <p
+                                    className='text-sm font-["Rajdhani"] max-w-[280px] mx-auto'
+                                    style={{ color: 'var(--color-text-secondary)' }}
+                                >
+                                    I&apos;m SyS-aI, I have the some sway around here, if you have any questions about all of the
+                                    cool stuff here, just ask!
+                                </p>
+                                {/* Quick Actions */}
+                                <div className='mt-6 flex flex-wrap justify-center gap-2'>
+                                    {['Tell me about SysRedux', 'View projects', 'Contact info'].map((action) => (
+                                        <button
+                                            key={action}
+                                            onClick={() => {
+                                                setInputValue(action);
+                                                sendMessage(action);
+                                            }}
+                                            className='px-3 py-1.5 text-xs font-["Rajdhani"] font-medium rounded-full
+                                                transition-all hover:scale-105'
+                                            style={{
+                                                background: 'transparent',
+                                                border: '1px solid var(--color-border)',
+                                                color: 'var(--color-text-secondary)',
+                                            }}
+                                        >
+                                            {action}
+                                        </button>
+                                    ))}
+                                </div>
+                            </div>
+                        )}
+                        {/* Chat Messages */}
+                        {messages.map((message, index) => (
+                            <div
+                                key={message.id}
+                                className={`flex items-end gap-2 animate-in fade-in slide-in-from-bottom-2 duration-300 ${
+                                    message.role === 'user' ? 'flex-row-reverse' : 'flex-row'
+                                }`}
+                                style={{ animationDelay: `${index * 50}ms` }}
+                            >
+                                {/* Avatar */}
+                                <div
+                                    className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 ${
+                                        message.role === 'user' ? '' : ''
+                                    }`}
+                                    style={{
+                                        background: message.role === 'user'
+                                            ? 'linear-gradient(135deg, var(--color-primary-purple), var(--color-primary-pink))'
+                                            : 'linear-gradient(135deg, var(--color-primary-cyan), var(--color-primary-green))',
+                                        boxShadow: message.role === 'user'
+                                            ? '0 0 10px rgba(131, 56, 236, 0.4)'
+                                            : '0 0 10px rgba(0, 255, 255, 0.4)',
+                                    }}
+                                >
+                                    {message.role === 'user' ? (
+                                        <User size={14} color='#fff' strokeWidth={2.5} />
+                                    ) : (
+                                        <Bot size={14} color='#0a0a0a' strokeWidth={2.5} />
+                                    )}
+                                </div>
+                                {/* Message Bubble */}
+                                <div
+                                    className={`max-w-[75%] px-4 py-2.5 rounded-2xl ${
+                                        message.role === 'user'
+                                            ? 'rounded-br-md'
+                                            : 'rounded-bl-md'
+                                    }`}
+                                    style={{
+                                        background: message.role === 'user'
+                                            ? 'linear-gradient(135deg, rgba(131, 56, 236, 0.3), rgba(255, 0, 110, 0.2))'
+                                            : 'rgba(0, 255, 255, 0.08)',
+                                        border: `1px solid ${
+                                            message.role === 'user'
+                                                ? 'rgba(131, 56, 236, 0.4)'
+                                                : 'rgba(0, 255, 255, 0.2)'
+                                        }`,
+                                    }}
+                                >
+                                    <p
+                                        className='text-sm font-["Rajdhani"] leading-relaxed whitespace-pre-wrap'
+                                        style={{ color: 'var(--color-text-primary)' }}
+                                    >
+                                        {message.content}
+                                    </p>
+                                </div>
+                            </div>
+                        ))}
+                        {/* Typing Indicator */}
+                        {isLoading && (
+                            <div className='flex items-end gap-2'>
+                                <div
+                                    className='w-8 h-8 rounded-full flex items-center justify-center'
+                                    style={{
+                                        background: 'linear-gradient(135deg, var(--color-primary-cyan), var(--color-primary-green))',
+                                        boxShadow: '0 0 10px rgba(0, 255, 255, 0.4)',
+                                    }}
+                                >
+                                    <Bot size={14} color='#0a0a0a' strokeWidth={2.5} />
+                                </div>
+                                <div
+                                    className='px-4 py-3 rounded-2xl rounded-bl-md'
+                                    style={{
+                                        background: 'rgba(0, 255, 255, 0.08)',
+                                        border: '1px solid rgba(0, 255, 255, 0.2)',
+                                    }}
+                                >
+                                    <div className='flex gap-1.5'>
+                                        {[0, 1, 2].map((i) => (
+                                            <span
+                                                key={i}
+                                                className='w-2 h-2 rounded-full animate-bounce'
+                                                style={{
+                                                    background: 'var(--color-primary-cyan)',
+                                                    boxShadow: '0 0 8px var(--color-primary-cyan)',
+                                                    animationDelay: `${i * 150}ms`,
+                                                    animationDuration: '1s',
+                                                }}
+                                            />
+                                        ))}
+                                    </div>
+                                </div>
+                            </div>
+                        )}
+                        <div ref={messagesEndRef} />
+                    </div>
+                    {/* Input Area */}
+                    <form
+                        onSubmit={handleSubmit}
+                        className='p-4 shrink-0'
+                        style={{
+                            background: 'var(--color-darker-bg)',
+                            borderTop: '1px solid var(--color-border)',
+                        }}
+                    >
+                        <div
+                            className='flex items-center gap-2 rounded-xl px-4 py-2'
+                            style={{
+                                background: 'var(--color-card-bg)',
+                                border: '1px solid var(--color-border)',
+                            }}
+                        >
+                            <input
+                                ref={inputRef}
+                                type='text'
+                                value={inputValue}
+                                onChange={(e) => setInputValue(e.target.value)}
+                                placeholder='Type your message...'
+                                disabled={isLoading}
+                                className='flex-1 bg-transparent text-sm font-["Rajdhani"] outline-none placeholder:text-(--color-secondary)'
+                                style={{ color: 'var(--color-text-primary)' }}
+                            />
+                            <button
+                                type='submit'
+                                disabled={!inputValue.trim() || isLoading}
+                                className='p-2 rounded-lg transition-all disabled:opacity-40 disabled:cursor-not-allowed hover:scale-110 active:scale-95'
+                                style={{
+                                    background: inputValue.trim()
+                                        ? 'linear-gradient(135deg, var(--color-primary-cyan), var(--color-primary-green))'
+                                        : 'transparent',
+                                    color: inputValue.trim() ? '#0a0a0a' : 'var(--color-text-secondary)',
+                                }}
+                                aria-label='Send message'
+                            >
+                                <Send size={18} strokeWidth={2.5} />
+                            </button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </>
-    )
+    );
 }

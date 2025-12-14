@@ -22,6 +22,7 @@ This portfolio application demonstrates modern web development practices with a 
 ## ✨ Key Features
 
 ### 🎨 **Modern UI/UX Design**
+
 - Cyberpunk-inspired theme with neon color palette (cyan, green, pink)
 - Fully responsive design for mobile, tablet, and desktop
 - Animated hero section with typing effect and particle system
@@ -29,6 +30,7 @@ This portfolio application demonstrates modern web development practices with a 
 - Accessible navigation with hamburger menu (all screen sizes)
 
 ### 🔐 **Authentication & Authorization**
+
 - Firebase Authentication (email/password)
 - Role-based access control (admin/user permissions)
 - Protected routes for admin functionality
@@ -36,6 +38,7 @@ This portfolio application demonstrates modern web development practices with a 
 - Account settings with data deletion capabilities
 
 ### 📁 **Project Management System**
+
 - Full CRUD operations for projects
 - Multi-image upload with Firebase Storage
 - Primary image selection for thumbnails
@@ -45,6 +48,7 @@ This portfolio application demonstrates modern web development practices with a 
 - Admin-only edit/delete functionality
 
 ### 📧 **Contact Form**
+
 - Form validation with real-time feedback
 - Firebase Firestore integration
 - Automated email notifications via Firebase Extension
@@ -52,6 +56,7 @@ This portfolio application demonstrates modern web development practices with a 
 - Success/error message handling
 
 ### 🧪 **Testing & CI/CD**
+
 - Comprehensive test suite with Jest
 - Unit tests for components (ProjectCard, NavBar)
 - Integration tests for user flows
@@ -60,6 +65,7 @@ This portfolio application demonstrates modern web development practices with a 
 - Continuous deployment to Vercel
 
 ### ⚡ **Performance Optimizations**
+
 - Next.js Image optimization for Firebase Storage
 - React Query for efficient data fetching and caching
 - Code splitting and lazy loading
@@ -69,6 +75,7 @@ This portfolio application demonstrates modern web development practices with a 
 ## 🛠️ Tech Stack
 
 ### **Frontend**
+
 - **Framework:** Next.js 16 (App Router)
 - **UI Library:** React 19
 - **Styling:** Tailwind CSS 4
@@ -77,24 +84,27 @@ This portfolio application demonstrates modern web development practices with a 
 - **Type Safety:** TypeScript 5
 
 ### **Backend & Database**
+
 - **Authentication:** Firebase Auth
 - **Database:** Cloud Firestore
 - **Storage:** Firebase Storage
 - **Email:** Firebase Extensions (Trigger Email)
 
 ### **Testing**
+
 - **Framework:** Jest 30
 - **Testing Library:** React Testing Library
 - **Environment:** jsdom
 
 ### **DevOps**
+
 - **CI/CD:** GitHub Actions
 - **Deployment:** Vercel
 - **Version Control:** Git/GitHub
 
 ## 📂 Project Structure
 
-```
+```json
 portfolio-sysredux/
 ├── app/                          # Next.js App Router
 │   ├── page.tsx                  # Home page with hero & skills
@@ -131,6 +141,7 @@ portfolio-sysredux/
 ## 🚀 Getting Started
 
 ### Prerequisites
+
 - Node.js 20+
 - pnpm (recommended) or npm
 - Firebase account with project set up
@@ -138,12 +149,14 @@ portfolio-sysredux/
 ### Installation
 
 1. **Clone the repository**
+
    ```bash
    git clone https://github.com/Sys-Redux/portfolio-sysredux.git
    cd portfolio-sysredux
    ```
 
 2. **Install dependencies**
+
    ```bash
    pnpm install
    ```
@@ -151,6 +164,7 @@ portfolio-sysredux/
 3. **Set up environment variables**
 
    Create a `.env.local` file in the root directory:
+
    ```env
    NEXT_PUBLIC_FIREBASE_API_KEY=your_api_key
    NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=your_auth_domain
@@ -161,11 +175,13 @@ portfolio-sysredux/
    ```
 
 4. **Deploy Firebase rules**
+
    ```bash
    firebase deploy --only firestore:rules
    ```
 
 5. **Run the development server**
+
    ```bash
    pnpm dev
    ```
@@ -207,6 +223,7 @@ pnpm test:coverage
 ### CI/CD Pipeline
 
 GitHub Actions automatically:
+
 - Runs ESLint for code quality
 - Executes test suite
 - Builds the application
@@ -217,6 +234,7 @@ GitHub Actions automatically:
 ### Firestore Security Rules
 
 The application implements comprehensive security rules:
+
 - Public read access for projects
 - Authenticated users can manage their own profiles
 - Admin-only access for project management
@@ -233,6 +251,7 @@ The application implements comprehensive security rules:
 ## 📧 Email Notifications
 
 Contact form submissions trigger automated email notifications using:
+
 - Firebase Extension: "Trigger Email from Firestore"
 - SMTP via Gmail App Password
 - Custom HTML email templates with cyberpunk styling
@@ -240,12 +259,14 @@ Contact form submissions trigger automated email notifications using:
 ## 🎨 Design Philosophy
 
 The cyberpunk aesthetic was chosen to demonstrate:
+
 - Advanced CSS skills (gradients, animations, glassmorphism)
 - Creative design implementation
 - Attention to detail in UI/UX
 - Brand consistency across all pages
 
 Color palette:
+
 - **Primary Cyan:** `#00ffff` (accents, headings)
 - **Primary Green:** `#39ff14` (success states, highlights)
 - **Primary Pink:** `#ff006e` (calls-to-action, errors)
@@ -254,6 +275,7 @@ Color palette:
 ## 🤝 Contributing
 
 While this is a personal portfolio project, I'm open to feedback and suggestions. Feel free to:
+
 - Report bugs via GitHub Issues
 - Suggest features or improvements
 - Fork the project for your own use (with attribution)
@@ -266,7 +288,7 @@ This project is open source and available under the MIT License.
 
 **Trevor Edge** - *Full-Stack Developer*
 
-- Email: edge.t.xyz@gmail.com
+- Email: [edge.t.xyz@gmail.com](edge.t.xyz@gmail.com)
 - GitHub: [@Sys-Redux](https://github.com/Sys-Redux)
 - Portfolio: [Your Portfolio URL]
 
@@ -281,4 +303,5 @@ This project is open source and available under the MIT License.
 
 ---
 
+\
 *Built with ❤️ and a lot of ☕ by Trevor Edge*

@@ -3,6 +3,7 @@ import NavBar from './NavBar';
 import Footer from './Footer';
 import { AuthProvider } from '@/lib/context/AuthContext';
 import { QueryProvider } from '@/lib/providers/QueryProvider';
+import ChatWidget from '@/components/ai/ChatWidget';
 
 export default function ClientLayout({ children }: { children: React.ReactNode }) {
 
@@ -17,6 +18,7 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
                         {children}
                     </main>
                     <Footer />
+                    <ChatWidget />
                 </div>
             </AuthProvider>
         </QueryProvider>

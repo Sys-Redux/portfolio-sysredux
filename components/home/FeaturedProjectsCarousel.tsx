@@ -108,7 +108,7 @@ export default function FeaturedProjectsCarousel({ projects }: FeaturedProjectsC
                                             {/* Quick Actions */}
                                             <div className="absolute bottom-3 right-3 flex gap-2 opacity-0 group-hover/card:opacity-100 transition-opacity">
                                                 {project.githubUrl && (
-                                                    <a
+                                                    <Link
                                                         href={project.githubUrl}
                                                         target='_blank'
                                                         rel='noopener noreferrer'
@@ -117,10 +117,10 @@ export default function FeaturedProjectsCarousel({ projects }: FeaturedProjectsC
                                                         aria-label='View on GitHub'
                                                     >
                                                         <GitPullRequestDraft size={16} color='var(--color-primary-cyan)' />
-                                                    </a>
+                                                    </Link>
                                                 )}
                                                 {project.liveUrl && (
-                                                    <a
+                                                    <Link
                                                         href={project.liveUrl}
                                                         target='_blank'
                                                         rel='noopener noreferrer'
@@ -129,7 +129,7 @@ export default function FeaturedProjectsCarousel({ projects }: FeaturedProjectsC
                                                         aria-label='View Live Demo'
                                                     >
                                                         <ExternalLink size={16} color='var(--color-primary-green)' />
-                                                    </a>
+                                                    </Link>
                                                 )}
                                             </div>
                                         </div>
